@@ -1,0 +1,13 @@
+lldpad:
+  lookup:
+    service: lldpad
+  fix_selinux: False
+  config:
+    interface_source: auto
+    defaults:
+      adminStatus: rx
+      sysNameTx: 'no'
+      portDescTx: 'no'
+      sysDescTx: 'no'
+      sysCapTx: 'no'
+      mngAddrTx: 'no'

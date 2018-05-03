@@ -1,0 +1,20 @@
+{% import_yaml 'lldpad/defaults.yaml' as default_settings %}
+
+{% set os_map = salt['grains.filter_by']({
+    'default': {
+      'packages': [ 'lldpad' ],
+      'service': 'lldpad',
+      'locations': {
+        'config_file': '/var/lib/lldpad/lldpad.conf',
+      },
+    },
+  }, grain='os', default='default', merge=salt['pillar.get']('lldpad:lookup')) %}
+
+{% do default_settings.lldpad.lookup.update(os_map) %}
+
+{% set lldpad_settings = salt['pillar.get'](
+    'lldpad',
+    default=default_settings.lldpad,
+    merge=True,
+  )
+%}
